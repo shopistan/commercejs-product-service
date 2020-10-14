@@ -16,10 +16,10 @@ const create = async (body) => {
   newProduct.image = data.image;
   newProduct.status = data.status;
   let product = await newProduct.save();
-  let message = JSON.stringify({items:[{ sku:  data.sku, "quantity": 0 }]});
+  let message = [{ sku:  data.sku, "quantity": 0 }];
 
   return {
-    snsResponse: await sns(message,'productCreate','productCreated'),
+    snsResponse: await sns(message,'productCreated','productCreated'),
     product
     //usage sns(message, subject, topic)
   };
